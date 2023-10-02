@@ -1,0 +1,195 @@
+******************************************************************************************************************Creating class***********************************************************************************************************************************************
+class hospital:
+     def __init__(self,wards):
+      self.Wards=wards
+     def show(self):
+        print(*self.Wards)
+     def checking_icu(self,bed_needed):
+      available_beds=5
+      if bed_needed<=available_beds:
+        print("------------------------------------")
+        print("Beds are available in ICU Ward")
+        available_beds=available_beds-bed_needed
+        return available_beds
+      else:
+        print("beds are not available")
+     def checking_general(self,bed_needed):
+      available_beds=10
+      if bed_needed<=available_beds:
+        print("------------------------------------")
+        print("Beds are available in General Ward")
+        available_beds=available_beds-bed_needed
+        return available_beds
+      else:
+        print("beds are not available")
+     def checking_emergency(self,bed_needed):
+       available_beds=3
+       if bed_needed<=available_beds:
+        print("------------------------------------")
+        print("Beds are available in Emergency Ward")
+        available_beds=available_beds-bed_needed
+        return available_beds
+       else:
+        print("beds are not available")
+
+class doctor:
+  def __init__(self,doctors):
+      self.Doctors=doctors
+  def show(self):
+    print(*self.Doctors)
+  def patient_status(self,specialist):
+    if specialist == "charan-Emergency medicine specialist":
+           print("Emergency tests")
+           report_emer=[]
+           report_emer.append("1.pulse rate")
+           print("checking pulse rate:")
+           report_emer.append(input())
+           report_emer.append("2.Blood sugar level")
+           print("Blood sugar level:")
+           report_emer.append(input())
+           report_emer.append("3.O2 level")
+           print("o2 level:")
+           report_emer.append(input())
+           report_emer.append("4.Doctor report")
+           print("Doctor report")
+           report_emer.append(input("Doctor:"))
+           return report_emer
+    elif specialist == "ragul-Cadriologist":
+           print("Take these tests")
+           report_icu=[]
+           for i in range(4):
+            if i==1:
+              report_icu.append("Day 1:")
+              report_icu.append("ECG Day 1:")
+              print("ECG Day 1")
+              report_icu.append(input())
+              print("Chest X-ray Day 1")
+              report_icu.append("Chest X-ray Day 1:")
+              report_icu.append(input())
+              print("MRI Day 1")
+              report_icu.append("MRI Day 1:")
+              report_icu.append(input())
+            if i==2:
+              report_icu.append("Day 2:")
+              report_icu.append("ECG Day 2:")
+              print("ECG Day 2")
+              report_icu.append(input())
+              print("Chest X-ray Day 2")
+              report_icu.append("Chest X-ray Day 2:")
+              report_icu.append(input())
+              print("MRI Day 2")
+              report_icu.append("MRI Day 2:")
+              report_icu.append(input())
+            if i==3:
+              report_icu.append("Day 3:")
+              report_icu.append("ECG Day 3:")
+              print("ECG Day 3")
+              report_icu.append(input())
+              print("Chest X-ray Day 3")
+              report_icu.append("Chest X-ray Day 3:")
+              report_icu.append(input())
+              print("MRI Day 3")
+              report_icu.append("MRI Day 3:")
+              report_icu.append(input())
+              return report_icu
+    else:
+      print("Doctor is not available now")
+  def avail_gen(self,name):
+    if name in self.Doctors:
+      if name == "vikram-General":
+           print("Doctor is available")
+           print("Hello,what can i do for you")
+           patient=[]
+           patient.append("1.Hello,what can i do for you:")
+           patient.append(input())
+           patient.append("2.how long are u not feeling well:")
+           print("how long are u not feeling well")
+           patient.append(input())
+           patient.append("3.Did u took any medicine:")
+           print("Did u took any medicine")
+           patient.append(input())
+           print("Okay, I understand your concern")
+           patient.append("Doctor Report:")
+           patient.append(input("Doctor:"))
+           return patient
+    else:
+      print("These are the available doctors today,",self.Doctors)
+
+class patient:
+  def __init__(self):
+    self.patient=None
+  def show(self):
+    print("Final Report")
+    for i in patient_finalreport[0]:
+      print(i,sep='\n')
+    for j in patient_finalreport[1]:
+      print(j,sep='\n')
+    for k in  patient_finalreport[2]:
+      print(k,sep='\n')
+
+******************************************************************************************************************Creating Object***********************************************************************************************************************************************
+kmc=hospital(["general","icu","emergency"])
+specialist=doctor(["vikram-General","\nragul-Cadriologist","\ncharan-Emergency medicine specialist","\nvicky-Neurologist"])
+kamal=patient()
+******************************************************************************************************************Connecting requirements using loop ***********************************************************************************************************************************************
+
+print("*********************************")
+print("Basic details")
+l=[]
+l.append(input("enter ur name:"))
+l.append(int(input("enter ur age:")))
+l.append(input("enter ur location:"))
+l.append(int(input("ur Mobile num is:")))
+l.append(int(input("Your token number is:")))
+print("please wait")
+print("----------------------------------")
+status=specialist.avail_gen("vikram-General")
+report=[l,*status]
+print("------------ General report----------------")
+for i in report:
+  print(i)
+print("*********************************")
+print("After Doctor consultation")
+option=int(input())
+if option==1:
+  print("Based on your report,\nyou are advisable to take some test and monitor for next one week,\nso,you need to admit here in General ward for the next three days ")
+  bed_genstatus=kmc.checking_general(1)
+  print("available beds in General wards:",bed_genstatus)
+elif option==2:
+  print("you are advisable to admit in ICU,\nNeed to monitor blood pressure and heart-beat rate regularly")
+  bed_icustatus=kmc.checking_icu(1)
+  print("available beds in ICU wards:",bed_icustatus)
+elif option==3:
+   print("you need a immediate oxygen supply,\nNeed to admit in emergency ward")
+   print("*********************************")
+   bed_emerstatus=kmc.checking_emergency(1)
+   print("available beds in Emergency wards:",bed_emerstatus)
+elif option==4:
+  print("Take the medication and bed rest,\nyou will be alright soon")
+status_final=specialist.patient_status("ragul-Cadriologist")
+print("Emergency Report",*status_final,sep='\n')
+print("*********************************")
+Final_report=[]
+Final_report.append("Doctor Final Report:")
+print("Doctor Final Report:")
+Final_report.append(input("Doctor:"))
+print("Discharge")
+option=int(input())
+if option==1:
+  print("you are ready to shift from ICU to General  ward")
+elif option==2:
+  print("you are going to be discharge today,\nnext test will be taken after 15 days,\nThank you")
+print("*********************************")
+patient_finalreport=(report,status_final,Final_report)
+kamal.show()
+
+******************************************************************************************************************Generating Bill******************************************************************************************************************************************************
+General_test=1000
+General_ward=8000
+ICU_bed=20000
+Emer_bed=25000
+ECG_test=8000
+Chest_xray=12000
+MRI_scan=30000
+bill_amount=[General_test+(Emer_bed*3)+(ECG_test*3)+(Chest_xray*3)+(MRI_scan*3)]
+print("Bill-amount=",*bill_amount)
